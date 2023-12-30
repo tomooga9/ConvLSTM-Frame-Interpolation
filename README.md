@@ -22,7 +22,7 @@
 
 ### Structure
 * `blocks.py` holds all essential blocks creating the network. This includes the `EncodingBlock`, `DecodingBlock`, `ChannelAttention`, `SpatialAttention`, and `AttentionBlock`s.
-* `convlstm.py` holds the `ConvLSTMCell` that becomes implemented in the `ConvLSTMLayer` which unrolls the cell over time-steps.
+* `conv_lstm.py` holds the `ConvLSTMCell` that becomes implemented in the `ConvLSTMLayer` which unrolls the cell over time-steps.
 * `synthesis.py` takes the `EncodingBlock` and `DecodingBlock` and creates the U-Net architecture as described in the paper, following an initial expansion of 32 channels, and an expansion ratio of 2 thereafter, which should learn to map the arbitrary residual function between the ground truth, and linear interpolation, by feeding in 4 frames. 
 * `refinement.py` takes the `AttentionBlock` (which implements the `ChannelAttention` and `SpatialAttention`) to form the residual refinement network.
 * `net.py` contains the trainable `Net` which implements the `SynthesisNet` and `RefinementNet` together. `Net` will return a tuple with the synthesis frame and refined frame for training. This file also contains `loss_fn` which given the synthesis, refined, and ground truth frame, will return the loss for this model as described in the paper.
