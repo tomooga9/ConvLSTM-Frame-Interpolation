@@ -11,7 +11,7 @@
  **Note:** This is a closely followed implementation of _Suzuki Et. al_'s work, however may not be exact. Reasons for this are as follows:
  
  **In Terms of the Synthesis Network:**
- * Feature Extractions in the U-Net were not explicitely mentioned in terms of expansion ratio, or starting expansion. This led to the implmentation of the `synthesis.py` with a starting expansion of 32 channels, and an expansion ratio of 2.
+ * Feature Extractions in the U-Net were not explicitely mentioned in terms of expansion ratio, or starting expansion. This led to the implmentation of the `synthesis.py` with an expansion ratio of 3, however 2 is equally as likely, with a higher starting expansion.
  * The exact implementation of the ConvLSTM layer they used was not shown. The original implementation by _Shi et. al._ was followed.
  * Time-Series Processing of Spatio-Temporal data in layers not made to handle such data were not shown, such as for `nn.Conv2d`, `nn.Upsample`, `nn.BatchNorm2d`. This led to _batch-wise_ processing of data. While this is an effective approach, they may have used sequential processing such as in a loop to implement this, where each time-step was treated as a slice and passed through. While this was considered, it increases the time it takes for the forward pass, and therefore _batch-wise_ processing was implemented.
  * The way that the time-series data collapses to a single frame was not mentioned. Time-step channel-wise concatenation was implemented after the last `DecodingBlock` and then passed through the last two convolutional layers. This is an effective approach, however may not be the appraoch they implemented.
